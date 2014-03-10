@@ -1,24 +1,2 @@
 <h2>New Listing</h2>
-<%= form_for(@listing) do |f| %>
-  <p>
-    <%= f.label :name %><br/>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :description %><br/>
-    <%= f.text_field :description %>
-  </p>
-  <%= f.submit %>
-  <% end %>
-  <% if @listing.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@listing.errors.count, "error") %>
-      prohibited this listing from being saved:</h2>
-
-      <ul>
-        <% @listing.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-    <% end %>
+<%= render "form" %>
