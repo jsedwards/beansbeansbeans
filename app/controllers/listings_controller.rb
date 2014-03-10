@@ -1,4 +1,6 @@
 class ListingsController < ApplicationController
+  before_action :set_listing, only: [:show, :edit, :update, :destroy]
+
   def index
     @listings = Listing.all
   end
@@ -20,15 +22,12 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @listing = Listing.find(params[:id])
   end
 
   def edit
-    @listing = Listing.find(params[:id])
   end
 
   def update
-    @listing = Listing.find(params[:id])
     if @listing.update(listing_params)
       flash[:notice] = "Listing has been updated."
       redirect_to @listing 
@@ -39,7 +38,6 @@ class ListingsController < ApplicationController
   end
 
   def destroy
-    @listing = Listing.find(params[:id])
     @listing.destroy
     flash[:notice] = "Listing has been deleted."
     redirect_to listings_path
@@ -48,5 +46,12 @@ class ListingsController < ApplicationController
 
   def listing_params
     params.require(:listing).permit(:name, :description)
+  end
+
+  def set_listing
+    @listing = Listing.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "The listing you were looking for could not be found."
+    redirect_to listings_path
   end
 end
