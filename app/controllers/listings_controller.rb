@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
   def index
+    @listings = Listing.all
   end
 
   def new
@@ -12,7 +13,9 @@ class ListingsController < ApplicationController
       flash[:notice] = "Listing has been created."
       redirect_to @listing
     else
+      flash[:alert] = "Listing has not been created."
 
+      render "new"
     end
   end
 
