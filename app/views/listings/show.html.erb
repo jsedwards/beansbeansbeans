@@ -1,4 +1,14 @@
 <h2><%= @listing.name %></h2>
+<ul id="comments">
+  <% @listing.comments.each do |comment| %>
+  <li>
+    <p id="comment_body"><%= link_to comment.body, [@listing, comment] %></p>
+    <p>tip: <%= comment.tip %></p>
+  </li>
+  <% end %>
+</ul>
+
+
 <%= link_to "New Comment", new_listing_comment_path(@listing) %>
 <%= link_to "Edit Listing", edit_listing_path(@listing) %>
 <%= link_to "Delete Listing", listing_path(@listing), method: :delete, data: { confirm: 
