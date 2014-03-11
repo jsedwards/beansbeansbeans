@@ -6,7 +6,7 @@
 
       <ul>
         <% @listing.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <li><span class="alert alert-warning"><%= msg %></span></li>
         <% end %>
       </ul>
   </div>
@@ -20,5 +20,9 @@
     <%= f.label :description %><br/>
     <%= f.text_field :description %>
   </p>
-  <%= f.submit %>
+  <% if @listing.new_record? %>
+  <%= f.submit "Create Listing", class:"btn btn-lg btn-primary" %>
+  <% else %>
+  <%= f.submit "Update Listing", class:"btn btn-lg btn-primary" %>
+  <% end %>
 <% end %>
