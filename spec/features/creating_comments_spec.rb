@@ -21,4 +21,11 @@ feature "Creating comments" do
     expect(page).to have_content("Comment has not been created.")
     expect(page).to have_content("Body can't be blank")
   end
+
+  scenario "Comment body must be longer than 10 characters" do 
+    fill_in "Body", with: "Not enuf"
+    click_button "Create Comment"
+    expect(page).to have_content("Comment has not been created.")
+    expect(page).to have_content("Body is too short")
+  end
 end
