@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     user = User.where(name: params[:signin][:name]).first
 
     if user && user.authenticate(params[:signin][:password])
-      session[:user_if] = user.id
+      session[:user_id] = user.id
       flash[:notice] = "Signed in successfully."
       redirect_to root_url
     else

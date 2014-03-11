@@ -2,7 +2,7 @@
 <ul id="comments">
   <% @listing.comments.each do |comment| %>
   <li>
-    <p><%= link_to comment.body, [@listing, comment] %></p>
+    <p id="comment_body"><%= link_to comment.body, [@listing, comment] %></p>
     <p>tip: <%= comment.tip %></p>
   </li>
   <% end %>

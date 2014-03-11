@@ -2,10 +2,19 @@ require "spec_helper"
 
 feature "Creating comments" do 
   before do 
-    FactoryGirl.create(:listing, name: "Little Chihuahua")
 
+    listing = FactoryGirl.create(:listing)
+    user = FactoryGirl.create(:user)
     visit "/"
-    click_link "Little Chihuahua"
+    click_link listing.name
+    click_link "New Comment"
+    message = "You need to sign in or sign up before continuing."
+    expect(page).to have_content(message)
+
+    fill_in "Name", with: user.name
+    fill_in "Password", with: user.password 
+    click_button "Sign in"
+    click_link listing.name
     click_link "New Comment"
   end
 
@@ -14,6 +23,9 @@ feature "Creating comments" do
     fill_in "Tip", with: "Try the Plaintain Black Bean Burrito"
     click_button "Create Comment"
     expect(page).to have_content("Comment has been created.")
+    within "#comment #author" do 
+      expect(page).to have_content("Created by Example User")
+    end
   end
 
   scenario "Creating a comment without valid attributes fails" do 

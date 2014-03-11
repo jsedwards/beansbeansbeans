@@ -2,9 +2,16 @@ require "spec_helper"
 
 feature "Deleting comments" do 
   let!(:listing) { FactoryGirl.create(:listing)}
-  let!(:comment) {FactoryGirl.create(:comment, listing: listing)}
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:comment) do 
+    comment = FactoryGirl.create(:comment, listing: listing)
+    comment.update(user: user)
+    comment
+  end
+
 
   before do 
+    sign_in_as!(user)
     visit "/"
     click_link listing.name
     click_link comment.body

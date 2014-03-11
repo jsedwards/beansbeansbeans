@@ -1,10 +1,15 @@
 require "spec_helper"
 
 feature "Editing Comments" do 
-
-  before do 
-  listing = FactoryGirl.create(:listing)
+let!(:listing) { FactoryGirl.create(:listing)}
+let!(:user) { FactoryGirl.create(:user)}
+let!(:comment) do 
   comment = FactoryGirl.create(:comment, listing: listing)
+  comment.update(user: user)
+  comment
+end
+  before do 
+    sign_in_as!(user)
     visit "/"
     click_link listing.name
     click_link comment.body
@@ -17,7 +22,7 @@ feature "Editing Comments" do
 
     expect(page).to have_content "Comment has been updated."
     
-    within("#comment p") do 
+    within("#comment") do 
       expect(page).to have_content("My updated comment on the listing")
     end
 

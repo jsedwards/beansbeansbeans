@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :require_signin!, excecpt: [:show, :index]
   before_action :set_listing
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
@@ -8,6 +9,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @listing.comments.build(comment_params)
+    @comment.user = current_user
     if @comment.save
       flash[:notice] = "Comment has been created."
       redirect_to [@listing, @comment]
