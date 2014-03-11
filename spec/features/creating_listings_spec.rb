@@ -2,6 +2,7 @@ require 'spec_helper'
 
 feature 'Creating Listings' do 
   before do
+    sign_in_as!(FactoryGirl.create(:admin_user))
     visit '/'
     click_link 'New Listing'
   end
