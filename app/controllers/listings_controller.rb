@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
+  before_action :authorize_admin!, except: [:index, :show]
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
-
   def index
     @listings = Listing.all
   end
@@ -53,5 +53,14 @@ class ListingsController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     flash[:alert] = "The listing you were looking for could not be found."
     redirect_to listings_path
+  end
+
+  def authorize_admin!
+    require_signin!
+
+    unless current_user.admin?
+      flash[:alert] = "You must be an admin to do that."
+      redirect_to root_path
+    end
   end
 end

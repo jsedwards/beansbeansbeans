@@ -2,6 +2,7 @@ require 'spec_helper'
 
 feature 'Editing Listings' do 
     before do
+      sign_in_as!(FactoryGirl.create(:admin_user))
       FactoryGirl.create(:listing, name: 'Magnolia')
       visit '/'
       click_link 'Magnolia'

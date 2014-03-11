@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 feature "Deleting Listings" do 
+  before do 
+    sign_in_as!(FactoryGirl.create(:admin_user))
+  end
   scenario "Deleting a listing" do 
     FactoryGirl.create(:listing, name: "Magnolia")
     visit "/"
