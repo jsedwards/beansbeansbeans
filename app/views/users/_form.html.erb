@@ -1,4 +1,4 @@
-<%= form_for @user do |f| %>
+<%= form_for(@user) do |f| %>
 <% if @user.errors.any? %>
 <div id="error_explanation">
   <h2><%= pluralize(@user.errors.count, "error") %>
@@ -28,5 +28,10 @@
     <%= f.label :password_confirmation %><br/>
     <%= f.password_field :password_confirmation %>
   </p>
+  <% if @user.new_record? %>
   <%= f.submit "Sign up" %>
+  <% else %>
+  <%= f.submit "Update Profile" %>
+  <% end %>
+
   <% end %>
