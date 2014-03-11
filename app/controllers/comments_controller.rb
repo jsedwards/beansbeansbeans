@@ -20,6 +20,18 @@ class CommentsController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    if @comment.update(comment_params)
+      flash[:notice] = "Comment has been updated."
+      redirect_to [@listing, @comment]
+    else
+      flash[:alert] = "Comment has not been updated."
+      render action: "edit"
+    end
+  end
 
 
   private
