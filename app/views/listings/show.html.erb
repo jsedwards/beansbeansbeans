@@ -1,4 +1,6 @@
 <h2><%= @listing.name %></h2>
+<p><%= @listing.description %></p>
+<div id="map"></div>
 <ul id="comments">
   <% @listing.comments.each do |comment| %>
   <li>
@@ -15,3 +17,11 @@
                                   "Are you sure you want to delete this listing?"
                                   } %>
 
+ <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+ <script type="text/javascript">
+ var map = L.map('map').setView([51.505, -0.09], 13);
+ L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/map/15/5240/12661.jpg', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+    maxZoom: 18
+}).addTo(map);
+ </script>
