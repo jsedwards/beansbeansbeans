@@ -1,4 +1,4 @@
-$.getScript("http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js").done(function(){
+
       navigator.geolocation.getCurrentPosition(onSuccess, onError, {
         enableHighAccuracy: true,
         timeout: 200000,
@@ -18,4 +18,4 @@ $.getScript("http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js").done(function()
    }
    function onError(){
    }
- })
+
