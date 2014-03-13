@@ -11,12 +11,11 @@
         var point_lat = $('#map').data("lat")
         var point_lng = $('#map').data("lon")
         if(user_lat < 37.639830 || user_lat > 37.9298240 || user_lng < -123.173825 || user_lng > -122.281780){
-          console.log("not close to SF")
           user_lat = point_lat;
           user_lng = point_lng;
         }
         var map = L.map('map').setView([user_lat,user_lng], 14);
-          L.tileLayer('http://otile4.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
+          L.tileLayer('https://otile4-s.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="www.openstreetmap.org/copyright">OpenStreetMap</a>'
           }).addTo(map);
      var std_icon = L.icon({
