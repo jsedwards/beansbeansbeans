@@ -1,7 +1,6 @@
 <h2><%= @listing.name %></h2>
 <p><%= @listing.description %></p>
 <%= content_tag "div", id: "map", data: {lat: @listing.latitude, lon: @listing.longitude} do %><% end %>
-<div id="map" da></div>
 <ul id="comments">
   <% @listing.comments.each do |comment| %>
   <li>
