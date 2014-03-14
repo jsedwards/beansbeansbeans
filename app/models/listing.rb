@@ -12,4 +12,16 @@ class Listing < ActiveRecord::Base
     )
   } % [longitude, latitude, distance_in_meters])
   }
+
+  def self.coords
+    coords = []
+    Listing.all.each do |listing|
+      coords << {lat: listing.latitude.to_f, lng: listing.longitude.to_f, name: listing.name, id: listing.id }
+    end
+    coords
+  end
+
+  def address
+    "#{self.street_address}"
+  end
 end
