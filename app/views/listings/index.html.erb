@@ -1,5 +1,15 @@
 <%= link_to "New Listing", new_listing_path %>
 <h2>Listings</h2>
+<% coords = [] %>
+<% @listings.each do |listing| %>
+<% if listing.latitude && listing.longitude %>
+  <% coords.push([listing.latitude.to_f, listing.longitude.to_f]) %>
+<% end %>
+<% end %>
+<%= content_tag "div", id: "map-index", data: {coords: @listings.coords} do %>
+<% end %>
+
+<div id="map"></div>
 <ul>
   <% @listings.each do |listing| %>
   <li><%= link_to listing.name, listing %></li>
