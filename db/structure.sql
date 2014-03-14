@@ -87,7 +87,11 @@ CREATE TABLE listings (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     latitude numeric(9,6),
-    longitude numeric(9,6)
+    longitude numeric(9,6),
+    street_address character varying(255),
+    city character varying(255),
+    state character varying(255),
+    zipcode character varying(255)
 );
 
 
@@ -268,3 +272,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140311221351');
 INSERT INTO schema_migrations (version) VALUES ('20140312041821');
 
 INSERT INTO schema_migrations (version) VALUES ('20140312042553');
+
+INSERT INTO schema_migrations (version) VALUES ('20140314030520');

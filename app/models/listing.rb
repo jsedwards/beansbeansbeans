@@ -20,4 +20,8 @@ class Listing < ActiveRecord::Base
     end
     coords
   end
+
+  def address
+    "#{self.street_address}"
+  end
 end
